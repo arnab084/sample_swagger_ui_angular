@@ -1,0 +1,32 @@
+
+
+<router-outlet></router-outlet>
+
+
+<ngb-alert style="margin: auto;">
+<div style="width: 600px;margin: auto;">
+  <label style="font-size: 20px;">Name:</label>
+  <input type="text" matInput [formControl]="name" style="width: 200px;height: 35px;;margin: 0 20px;"> 
+  <button (click)="findUser()" mat-raised-button color="primary" style="height: 35px;;margin: 0 20px;">FindUser</button>
+  <button mat-raised-button color="primary" (click)="findAllUsers()" style="height: 35px;;margin: 0 20px;">Find All Users</button>
+</div>
+</ngb-alert>
+
+<table class="table table-striped" style="width: 600px;margin: auto;">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of userList">
+    <td >{{ user.id }}</td>
+    <td>
+      {{ user.name }}
+    </td>
+    <td>{{ user.email }}</td>
+  </tr>
+  </tbody>
+</table>
