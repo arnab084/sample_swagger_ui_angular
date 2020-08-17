@@ -1,10 +1,13 @@
-# Sampleswaggerproject
+# Sample swagger project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Backend
+Refer https://github.com/arnab084/simple_springboot_mysql_applicaton/tree/springboot_integrate_swagger
 
 ## Code scaffolding
 
