@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { BasicErrorControllerService } from './api/basicErrorController.service';
-import { MainControllerService } from './api/mainController.service';
+import { UserControllerService } from './api/userController.service';
 
 @NgModule({
   imports:      [],
@@ -12,7 +12,7 @@ import { MainControllerService } from './api/mainController.service';
   exports:      [],
   providers: [
     BasicErrorControllerService,
-    MainControllerService ]
+    UserControllerService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {

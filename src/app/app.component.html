@@ -1,8 +1,8 @@
 
-
+<app-header></app-header>
 <router-outlet></router-outlet>
-
-
+<app-footer></app-footer>
+<!-- 
 <ngb-alert style="margin: auto;">
 <div style="width: 600px;margin: auto;">
   <label style="font-size: 20px;">Name:</label>
@@ -16,7 +16,10 @@
   <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
+    <th scope="col">
+      First Name
+    </th>
+    <th scope="col">Last Name</th>
     <th scope="col">Email</th>
   </tr>
   </thead>
@@ -24,9 +27,12 @@
   <tr *ngFor="let user of userList">
     <td >{{ user.id }}</td>
     <td>
-      {{ user.name }}
+      {{ user.firstName }}
+    </td>
+    <td>
+      {{ user.lastName }}
     </td>
     <td>{{ user.email }}</td>
   </tr>
   </tbody>
-</table>
+</table> -->

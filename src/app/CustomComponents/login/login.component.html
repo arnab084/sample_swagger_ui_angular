@@ -1,0 +1,15 @@
+<form [formGroup]="schoolLoginForm">
+  
+    <label>
+      Username:
+      <input type="text" formControlName="username">
+    </label>
+  
+    <label>
+      Password:
+      <input type="password" formControlName="password">
+    </label>
+
+    <button type="submit" [disabled]="!schoolLoginForm.valid">Submit</button>
+  
+  </form>

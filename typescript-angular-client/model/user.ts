@@ -12,7 +12,13 @@
 
 
 export interface User { 
+    address?: string;
+    authenticationToken?: string;
     email?: string;
+    firstName?: string;
     id?: number;
-    name?: string;
+    lastName?: string;
+    password?: string;
+    phone?: string;
+    username?: string;
 }
