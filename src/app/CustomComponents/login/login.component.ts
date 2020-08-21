@@ -26,8 +26,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.UserControllerService.loginUsingPOST(this.schoolLoginForm.value.password,this.schoolLoginForm.value.username).subscribe(obj => {
       this.AuthenticationService.updateUserData(obj);
+      
       if(obj){
+        localStorage.setItem("authentication",obj.authenticationToken);
         this.Router.navigate(['userlist']);
+      } else{
+        localStorage.setItem("authentication",null);
       }
       
     });

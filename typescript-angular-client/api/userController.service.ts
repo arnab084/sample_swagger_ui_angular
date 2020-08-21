@@ -19,7 +19,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { IterableUser } from '../model/iterableUser';
-import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -101,9 +100,9 @@ export class UserControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loginUsingPOST(password: string, username: string, observe?: 'body', reportProgress?: boolean): Observable<User>;
-    public loginUsingPOST(password: string, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
-    public loginUsingPOST(password: string, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public loginUsingPOST(password: string, username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public loginUsingPOST(password: string, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public loginUsingPOST(password: string, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public loginUsingPOST(password: string, username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (password === null || password === undefined) {
@@ -138,7 +137,7 @@ export class UserControllerService {
             'application/json'
         ];
 
-        return this.httpClient.post<User>(`${this.basePath}/user/login`,
+        return this.httpClient.post<any>(`${this.basePath}/user/login`,
             null,
             {
                 params: queryParameters,

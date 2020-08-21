@@ -8,11 +8,6 @@ import { Subscription } from 'rxjs';
 })
 export class AuthGuardService implements CanActivate{
 
-
-  updateUserData(loginUser) {
-      localStorage.setItem("authentication",loginUser.authenticationToken);
-  }
-  
   constructor(private router: Router) { }
 
   canActivate(): boolean {
@@ -22,9 +17,5 @@ export class AuthGuardService implements CanActivate{
     }
     return true;
   }
-
-  
-  
-
   
 }
