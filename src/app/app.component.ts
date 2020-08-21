@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { UserControllerService } from 'typescript-angular-client';
-import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +7,7 @@ import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent {
   title = 'sampleswaggerproject';
-  name = new FormControl('arnab');
-  userList;
-  constructor(private UserControllerService: UserControllerService, alertConfig: NgbAlertConfig) {
-    alertConfig.type = 'success';
-    alertConfig.dismissible = false;
+  constructor() {
   }
 
 

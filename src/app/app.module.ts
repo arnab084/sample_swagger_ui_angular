@@ -9,8 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgbModule, NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
-import { MatListModule } from "@angular/material/list";
-import { MatButtonModule } from "@angular/material/button";
+
 
 import { LoginComponent } from "./CustomComponents/login/login.component";
 import { UserListComponent } from "./CustomComponents/user-list/user-list.component";
@@ -18,6 +17,7 @@ import { DashboardComponent } from "./CustomComponents/dashboard/dashboard.compo
 import { PageNotFoundComponent } from './CustomComponents/page-not-found/page-not-found.component';
 import { HeaderComponent } from './CustomComponents/header/header.component';
 import { FooterComponent } from './CustomComponents/footer/footer.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,8 @@ import { FooterComponent } from './CustomComponents/footer/footer.component';
     BrowserAnimationsModule,
     NgbModule,
     NgbAlertModule,
-    MatListModule,
-    MatButtonModule,
+    MaterialModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

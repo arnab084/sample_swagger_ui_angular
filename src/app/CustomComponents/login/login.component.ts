@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserControllerService } from 'typescript-angular-client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +15,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  constructor() { }
+  constructor(private UserControllerService: UserControllerService, private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    console.log(this.schoolLoginForm.value);
+    this.UserControllerService.loginUsingPOST(this.schoolLoginForm.value.password,this.schoolLoginForm.value.username).subscribe(obj => {
+      console.log(obj);
+      if(obj){
+        localStorage.setItem("authentication",obj.authenticationToken);
+        this.router.navigate(['userlist'])
+      }
+      
+    });
   }
 
 }
