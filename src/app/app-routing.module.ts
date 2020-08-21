@@ -4,12 +4,13 @@ import { UserListComponent } from './CustomComponents/user-list/user-list.compon
 import { LoginComponent } from './CustomComponents/login/login.component';
 import { DashboardComponent } from './CustomComponents/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './CustomComponents/page-not-found/page-not-found.component';
+import { AuthGuardService } from './CustomServices/auth-guard.service';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'userlist', component: UserListComponent },
+  { path: 'userlist', component: UserListComponent, canActivate: [AuthGuardService] },
   
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
