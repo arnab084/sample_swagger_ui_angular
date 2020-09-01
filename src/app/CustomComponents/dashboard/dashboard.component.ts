@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit {
 
 
   findUser(){
-    this.UserControllerService.loginUsingPOST(localStorage.getItem("username"),localStorage.getItem("username")).subscribe(obj => {
-      this.userList = obj;
-    });
+    // this.UserControllerService.loginUsingPOST(localStorage.getItem("username"),localStorage.getItem("username")).subscribe(obj => {
+    //   this.userList = obj;
+    // });
   }
 
 }

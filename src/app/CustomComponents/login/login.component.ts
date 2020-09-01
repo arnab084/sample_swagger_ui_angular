@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserControllerService } from 'typescript-angular-client';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/CustomServices/authentication.service';
+import { UserControllerService } from 'typescript-angular-client';
 
 @Component({
   selector: 'app-login',
@@ -13,28 +12,29 @@ export class LoginComponent implements OnInit {
 
   schoolLoginForm = new FormGroup({
     username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
   });
 
   constructor(private UserControllerService: UserControllerService, 
-    private Router:Router,
-    private AuthenticationService:AuthenticationService) { }
+    private Router:Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.UserControllerService.loginUsingPOST(this.schoolLoginForm.value.password,this.schoolLoginForm.value.username).subscribe(obj => {
-      this.AuthenticationService.updateUserData(obj);
-      
-      if(obj){
+    this.UserControllerService.loginUsingPOST(this.schoolLoginForm.value).subscribe(obj => {
+        console.log(obj);
         localStorage.setItem("authentication",obj.authenticationToken);
+        localStorage.setItem("username",obj.username);
         this.Router.navigate(['userlist']);
-      } else{
-        localStorage.setItem("authentication",null);
-      }
-      
+    },error => {
+      localStorage.clear();
+      this.schoolLoginForm.setErrors(error.error.message);
     });
   }
+
+
+  get username() { return this.schoolLoginForm.controls['username']; }
+  get password() { return this.schoolLoginForm.controls['password']; }
 
 }

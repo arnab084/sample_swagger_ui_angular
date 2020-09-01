@@ -19,6 +19,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs/Observable';
 
 import { IterableUser } from '../model/iterableUser';
+import { LoginBean } from '../model/loginBean';
+import { RegistrationBean } from '../model/registrationBean';
+import { User } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -95,30 +98,17 @@ export class UserControllerService {
     /**
      * login
      * 
-     * @param password password
-     * @param username username
+     * @param user user
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loginUsingPOST(password: string, username: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public loginUsingPOST(password: string, username: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public loginUsingPOST(password: string, username: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public loginUsingPOST(password: string, username: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public loginUsingPOST(user: LoginBean, observe?: 'body', reportProgress?: boolean): Observable<User>;
+    public loginUsingPOST(user: LoginBean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
+    public loginUsingPOST(user: LoginBean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public loginUsingPOST(user: LoginBean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (password === null || password === undefined) {
-            throw new Error('Required parameter password was null or undefined when calling loginUsingPOST.');
-        }
-
-        if (username === null || username === undefined) {
-            throw new Error('Required parameter username was null or undefined when calling loginUsingPOST.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (password !== undefined && password !== null) {
-            queryParameters = queryParameters.set('password', <any>password);
-        }
-        if (username !== undefined && username !== null) {
-            queryParameters = queryParameters.set('username', <any>username);
+        if (user === null || user === undefined) {
+            throw new Error('Required parameter user was null or undefined when calling loginUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -136,11 +126,14 @@ export class UserControllerService {
         const consumes: string[] = [
             'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-        return this.httpClient.post<any>(`${this.basePath}/user/login`,
-            null,
+        return this.httpClient.post<User>(`${this.basePath}/user/login`,
+            user,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -152,70 +145,17 @@ export class UserControllerService {
     /**
      * register
      * 
-     * @param address address
-     * @param email email
-     * @param firstName firstName
-     * @param lastName lastName
-     * @param password password
-     * @param phone phone
-     * @param userName userName
+     * @param user user
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public registerUsingPOST(address: string, email: string, firstName: string, lastName: string, password: string, phone: string, userName: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
-    public registerUsingPOST(address: string, email: string, firstName: string, lastName: string, password: string, phone: string, userName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
-    public registerUsingPOST(address: string, email: string, firstName: string, lastName: string, password: string, phone: string, userName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
-    public registerUsingPOST(address: string, email: string, firstName: string, lastName: string, password: string, phone: string, userName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public registerUsingPOST(user: RegistrationBean, observe?: 'body', reportProgress?: boolean): Observable<string>;
+    public registerUsingPOST(user: RegistrationBean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+    public registerUsingPOST(user: RegistrationBean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
+    public registerUsingPOST(user: RegistrationBean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (address === null || address === undefined) {
-            throw new Error('Required parameter address was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (firstName === null || firstName === undefined) {
-            throw new Error('Required parameter firstName was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (lastName === null || lastName === undefined) {
-            throw new Error('Required parameter lastName was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (password === null || password === undefined) {
-            throw new Error('Required parameter password was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (phone === null || phone === undefined) {
-            throw new Error('Required parameter phone was null or undefined when calling registerUsingPOST.');
-        }
-
-        if (userName === null || userName === undefined) {
-            throw new Error('Required parameter userName was null or undefined when calling registerUsingPOST.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (address !== undefined && address !== null) {
-            queryParameters = queryParameters.set('address', <any>address);
-        }
-        if (email !== undefined && email !== null) {
-            queryParameters = queryParameters.set('email', <any>email);
-        }
-        if (firstName !== undefined && firstName !== null) {
-            queryParameters = queryParameters.set('firstName', <any>firstName);
-        }
-        if (lastName !== undefined && lastName !== null) {
-            queryParameters = queryParameters.set('lastName', <any>lastName);
-        }
-        if (password !== undefined && password !== null) {
-            queryParameters = queryParameters.set('password', <any>password);
-        }
-        if (phone !== undefined && phone !== null) {
-            queryParameters = queryParameters.set('phone', <any>phone);
-        }
-        if (userName !== undefined && userName !== null) {
-            queryParameters = queryParameters.set('userName', <any>userName);
+        if (user === null || user === undefined) {
+            throw new Error('Required parameter user was null or undefined when calling registerUsingPOST.');
         }
 
         let headers = this.defaultHeaders;
@@ -233,11 +173,14 @@ export class UserControllerService {
         const consumes: string[] = [
             'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
         return this.httpClient.post<string>(`${this.basePath}/user/register`,
-            null,
+            user,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
